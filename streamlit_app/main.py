@@ -3,9 +3,9 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
-st.title("ChatGPT-like clone")
+st.title("hey!")
 
-client = OpenAI(api_key=st.secrets("OPEN_AI_API"))
+client = OpenAI(api_key=st.secrets["OPEN_AI_API"])
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
