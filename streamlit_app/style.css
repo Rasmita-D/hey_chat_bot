@@ -1,8 +1,14 @@
 
 
+p
+{
+    border-bottom: 10px black;
+}
 .st-emotion-cache-1104ytp.e1icttdg0
 {
     font-family: 'Comic Sans MS';
+    border-bottom: 10px black;
+    font-size: 15px;
 }
 
 .stAppViewContainer.appview-container {

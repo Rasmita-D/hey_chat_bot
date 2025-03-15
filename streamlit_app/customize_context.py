@@ -11,7 +11,7 @@ st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 st.image("./streamlit_app/logo1.png")
 assistant_avatar = "./streamlit_app/stuntman.png"
-user_avatar="./streamlit_app/user2.png"
+user_avatar="./streamlit_app/user.jpg"
 client = OpenAI(api_key=st.secrets["OPEN_AI_API"])
 
 if "openai_model" not in st.session_state:
