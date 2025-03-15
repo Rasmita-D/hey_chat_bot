@@ -11,7 +11,6 @@ st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 st.image("./streamlit_app/logo1.png")
 assistant_avatar = "./streamlit_app/stuntman.png"
-user_avatar="./streamlit_app/user2.png"
 client = OpenAI(api_key=st.secrets["OPEN_AI_API"])
 
 if "openai_model" not in st.session_state:
@@ -150,7 +149,7 @@ Add this link when you are asking the customer to reach out to support: https://
 
 if prompt := st.chat_input("How can I assist you?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user", avatar=user_avatar):
+    with st.chat_message("user"):
         st.markdown(prompt)
 
     with st.chat_message("assistant", avatar=assistant_avatar if message["role"] == "assistant" else user_avatar):
