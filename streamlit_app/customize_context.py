@@ -1,17 +1,17 @@
-import json
+
 import streamlit as st
-import os
 from openai import OpenAI
 
-st.title("hey!")
-def load_offerings():
-    try:
-        with open('./streamlit_app/hey_telecom_offers.txt', "r", encoding="utf-8") as file:
-            return file.read()
-    except FileNotFoundError:
-        return "Hey! Belgium offers mobile and internet services. Visit https://www.heytelecom.be/nl for details."
+st.set_page_config(page_title="hey!")
+with open('./streamlit_app/style.css') as f:
+    css = f.read()
+
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 
+st.image("./streamlit_app/logo1.png")
+assistant_avatar = "./streamlit_app/stuntman.png"
+user_avatar="./streamlit_app/user2.png"
 client = OpenAI(api_key=st.secrets["OPEN_AI_API"])
 
 if "openai_model" not in st.session_state:
@@ -20,8 +20,9 @@ if "openai_model" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = [{'role':'assistant', 'content':"Hello there! I am your buddy here to help you with the hey offerings. Ask me anything!"}]
 
+                     
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    with st.chat_message(message["role"], avatar=assistant_avatar if message["role"] == "assistant" else None):
         st.markdown(message["content"])
 
 # Prepend context about Hey! Belgium offerings
@@ -149,10 +150,10 @@ Add this link when you are asking the customer to reach out to support: https://
 
 if prompt := st.chat_input("How can I assist you?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar=user_avatar):
         st.markdown(prompt)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=assistant_avatar if message["role"] == "assistant" else user_avatar):
         stream = client.chat.completions.create(
             model=st.session_state["openai_model"],
             messages=[
@@ -164,4 +165,5 @@ if prompt := st.chat_input("How can I assist you?"):
         )
         response = st.write_stream(stream)
     st.session_state.messages.append({"role": "assistant", "content": response})
+
 
