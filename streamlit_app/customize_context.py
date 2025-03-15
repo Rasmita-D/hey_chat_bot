@@ -10,7 +10,7 @@ st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 
 st.image("./streamlit_app/logo1.png")
-assistant_avatar = "./streamlit_app/stuntman.png"
+#assistant_avatar = "./streamlit_app/stuntman.png"
 client = OpenAI(api_key=st.secrets["OPEN_AI_API"])
 
 if "openai_model" not in st.session_state:
@@ -21,7 +21,7 @@ if "messages" not in st.session_state:
 
                      
 for message in st.session_state.messages:
-    with st.chat_message(message["role"], avatar=assistant_avatar if message["role"] == "assistant" else None):
+    with st.chat_message(message["role"]): #avatar=assistant_avatar if message["role"] == "assistant" else None):
         st.markdown(message["content"])
 
 # Prepend context about Hey! Belgium offerings
