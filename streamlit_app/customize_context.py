@@ -23,7 +23,7 @@ if "messages" not in st.session_state:
                      
 for message in st.session_state.messages:
     with st.chat_message(message["role"], avatar=assistant_avatar if message["role"] == "assistant" else None):
-        st.markdown(f'<span style=\'color:navyblue\'> {message["content"]} </span>',unsafe_allow_html=True)
+        st.markdown(message["content"])
 
 # Prepend context about Hey! Belgium offerings
 context = f"""
