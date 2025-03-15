@@ -3,10 +3,10 @@ import streamlit as st
 from openai import OpenAI
 
 st.set_page_config(page_title="hey!")
-with open('./streamlit_app/style.css') as f:
-    css = f.read()
+#with open('./streamlit_app/style.css') as f:
+#    css = f.read()
 
-st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+#st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 
 st.image("./streamlit_app/logo1.png")
